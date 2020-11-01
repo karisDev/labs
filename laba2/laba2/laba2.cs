@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 
 namespace laba2
@@ -7,8 +7,8 @@ namespace laba2
     {
         public static string[][] read() // возврат данных из txt
         {
-            string[][] arr = new string[100][]; // На самом деле тут можно задать массив любого размера, но для экономии памяти 100 - верхняя граница
-            try // если произошли ошибки при записи данных в массив из файла, то начинаем его с нуля
+            string[][] arr = new string[100][];
+            try
             {
                 using (var file = File.OpenText(@"C:\\input\laba2db.txt"))
                 {
@@ -26,14 +26,13 @@ namespace laba2
             }
             catch
             {
-                Console.WriteLine("File is does not exist or the data was corrupted.\nPress any key to create a new one...");
+                Console.WriteLine("File is not there or the data was corrupted.\nPress any key to create a new one...");
                 Console.ReadKey();
-                arr = new string[100][];
                 profile.profiles_count = 0;
             }
             return arr;
         }
-        public static void write(string[][] arr) // запись данных обратно в txt
+        public static void write(string[][] arr) // запись данных в txt
         {
             using (StreamWriter sw = new StreamWriter(@"C:\\input\laba2db.txt", false))
             {
@@ -51,7 +50,7 @@ namespace laba2
     class profile
     {
         private static string[][] profile_array = txt.read(); // тут хранятся все профили
-        public static int profiles_count; // количество профилей, мы не можем использовать profile_array.Length потому что профилей меньше, чем размер массива
+        public static int profiles_count; // количество профилей
         static string[] terms = {
             "ID",
             "Last name",
@@ -64,7 +63,7 @@ namespace laba2
             "Group",
             "Course",
             "Average score"
-        }; // терминология каждой строчки для сокращения размера кода
+        };
 
         public static int user_number(int lowest, int highest) // заставляет пользователя написать число в диапозоне lowest...highest
         {
@@ -78,13 +77,13 @@ namespace laba2
             }
             return user_answer;
         }
-        private static int date_compare(string[] date12) // сравнение двух дат -1: date1 < date2 0: date1 = date2 1: date1 > date2
+        private static int date_compare(string[] date12) // -1: date1 < date2 0: date1 = date2 1: date1 > date2
         {
             DateTime date1 = new DateTime(Int32.Parse(date12[2]), Int32.Parse(date12[1]), Int32.Parse(date12[0]));
             DateTime date2 = new DateTime(Int32.Parse(date12[5]), Int32.Parse(date12[4]), Int32.Parse(date12[3]));
             return DateTime.Compare(date1, date2);
         }
-        private static string[] birth_check(string date_check) // проверка даты на правильность написания
+        private static string[] birth_check(string date_check) // возврат массива длиной 1 если не существует даты
         {
             int current_year = Convert.ToInt32(DateTime.Now.Year);
             int date_day, date_month, date_year;
@@ -166,7 +165,7 @@ namespace laba2
             Console.Write("Choose element to edit: ");
             user_option = user_number(1, 11);
             string tempstr;
-            switch (user_option) // 5, 6, 7 - это дата, ее нужно проверить на правильность, прежде чем записывать
+            switch (user_option)
             {
                 case 1:
                     Console.Write("ID: ");
@@ -206,7 +205,11 @@ namespace laba2
                     profile_data[6] = tempstr;
                     break;
                 case 10:
-                    Console.WriteLine(terms[9] + "'s new value: ");
+                    Console.Write(terms[9] + "'s new value: ");
+                    profile_data[10] = user_number(1, 4).ToString();
+                    break;
+                case 11:
+                    Console.Write(terms[10] + "'s new value: ");
                     profile_data[10] = user_number(0, Int32.MaxValue).ToString();
                     break;
                 default:
@@ -216,14 +219,14 @@ namespace laba2
             }
             return profile_data;
         }
-        private static void sort_choose() // сортировка профиля по ID, ФИО, Дате рождени
+        private static void sort_choose() // список профилей
         {
-            int order; // вид сортировки
-            bool if_descending; // убывает?
-            string[][] temp_array = profile_array; // дублирование массива на всякий, потому что строки будут меняться местами
+            int order;
+            bool if_descending;
+            string[][] temp_array = profile_array;
             Console.WriteLine("Choose an order:\n1) ID\n2) Full name\n3) Date of birth");
             Console.Write("Input: ");
-            order = user_number(1, 3); 
+            order = user_number(1, 3);
             Console.Write("\n1) Ascending\n2) Descending\nInput: ");
             if (user_number(1, 2) == 1)
             {
@@ -235,10 +238,10 @@ namespace laba2
             }
             Console.Clear();
 
-            string[] tempArray; // используется для замены элементов или для формата ввода в функцию date_compare
+            string[] tempArray;
             switch (order)
             {
-                case 1: // сортировка по id
+                case 1:
                     for (int i = 0; i < profiles_count; i++)
                     {
                         for (int j = 0; j < profiles_count - 1; j++)
@@ -264,7 +267,7 @@ namespace laba2
                         }
                     }
                     break;
-                case 2: // сортировка по ФИО
+                case 2:
                     string str1, str2;
                     for (int i = 0; i < profiles_count; i++)
                     {
@@ -296,7 +299,7 @@ namespace laba2
                         }
                     }
                     break;
-                case 3: // сортировка по Дате Рождения
+                case 3:
                     for (int i = 0; i < profiles_count; i++)
                     {
                         for (int j = 0; j < profiles_count - 1; j++)
@@ -325,11 +328,11 @@ namespace laba2
                     break;
             }
             display(temp_array, profiles_count);
-            profile_array = temp_array; // я убедился, что temp_array был не нужен(ниче не меняется), но удалять его не буду
+            profile_array = temp_array;
             Console.Write("\n1) Edit a line\n2) Search\n3) Lobby\nInput: ");
             switch (user_number(1, 3))
             {
-                case 1: // редактирование строки
+                case 1:
                     Console.Write("\n\nChoose a line: ");
                     int user_line = user_number(1, profiles_count);
                     Console.Write("\nWhat to do with line #" + user_line + "?\n1) Delete\n2) Edit\n3) Exit\n");
@@ -351,13 +354,13 @@ namespace laba2
                             break;
                     }
                     break;
-                case 2: // поиск по ключевому слову
-                    string keyword; // само ключевое слово
-                    int category; // категория, в которой слово искать
-                    int counter = 0; // для слежения за индексами
-                    string[][] keyword_array; // массив в котором только совпадения для вывода
-                    int[] lines_with_keyword; // количество строк с совпадениями, чтобы изменить верную строку массива без совпадений
-                    int lines_count = 0; // количество совпадений
+                case 2:
+                    string keyword;
+                    int category;
+                    int counter = 0;
+                    string[][] keyword_array;
+                    int[] lines_with_keyword;
+                    int lines_count = 0;
                     Console.Write("Choose a category:\n");
                     for (int i = 1; i < 12; i++)
                     {
@@ -367,9 +370,10 @@ namespace laba2
                     category = user_number(1, 11) - 1;
                     Console.Write("Enter a keyword: ");
                     keyword = Console.ReadLine();
-                    for (int i = 0; i < profiles_count; i++) // запись количества совпадений
+                    Console.Clear();
+                    for (int i = 0; i < profiles_count; i++)
                     {
-                        if (profile_array[i][category].ToUpper().Contains(keyword.ToUpper())) 
+                        if (profile_array[i][category].ToUpper().Contains(keyword.ToUpper()))
                         {
                             lines_count++;
                         }
@@ -395,7 +399,7 @@ namespace laba2
                         display(keyword_array, lines_count);
                         Console.Write("Choose a line: ");
                         int keyword_user_line = user_number(1, lines_count);
-                        profile_array[keyword_user_line] = edit(keyword_array[keyword_user_line - 1]); // запись измененной строки обратно в главный массив
+                        profile_array[keyword_user_line] = edit(keyword_array[keyword_user_line - 1]);
                     }
                     break;
                 case 3:
@@ -405,7 +409,7 @@ namespace laba2
         }
         private static void display(string[][] temp_array, int temp_length)
         {
-            int[] max_category_length = new int[11]; // для красоты :) , чтобы не было "лесенки" при выводе
+            int[] max_category_length = new int[11]; // для красоты :) , чтобы не было "лесенки при выводе"
             for (int i = 0; i < 11; i++)
             {
                 max_category_length[i] = terms[i].Length;
@@ -435,8 +439,7 @@ namespace laba2
                     Console.Write(temp_array[i][j] + spaces + "  ");
                 }
             }
-            // названия переменных говорят сами за себя, комментировать не буду
-            int min_score = Int32.MaxValue; 
+            int min_score = Int32.MaxValue;
             int max_score = Int32.MinValue;
             int avg_score = 0;
             int sum_score = 0;
@@ -451,7 +454,7 @@ namespace laba2
             }
             Console.WriteLine("\n\nBiggest score: " + max_score + "  Lowest score: " + min_score + "  Average score: " + avg_score / temp_length + "  Summary score: " + sum_score);
         }
-        private static int arrow_menu(string[] options_arr) // менюшка с управлением через стрелочки, можно без нее, но красиво
+        private static int arrow_menu(string[] options_arr) // менюшка с управлением через стрелочки
         {
             ConsoleKeyInfo key;
             int number_of_options = options_arr.Length;
@@ -468,7 +471,7 @@ namespace laba2
                     else { Console.WriteLine(options_arr[i - 1]); }
                 }
 
-                key = Console.ReadKey(); // распознаем кнопку и изменяем user_options в зависимости от нее.
+                key = Console.ReadKey(); // распознаем кнопку,  или изменяем user_options в зависимости от нее.
                 switch (key.Key)
                 {
                     case ConsoleKey.Enter:
@@ -493,7 +496,7 @@ namespace laba2
         }
         public static bool lobby()
         {
-            Console.WriteLine(profile_array); // для инициализации массива, нужно совершить с ним действие
+            Console.WriteLine(profile_array); // заполняем массив
             Console.Clear();
             bool terminate = false;
             switch (arrow_menu(new string[] { "Add new profile", "View Data", "Exit and save" }))
@@ -502,10 +505,11 @@ namespace laba2
                     profile_array[profiles_count] = add();
                     break;
                 case 2:
-                    if (profile_array[0][0] == "")
+                    if (profiles_count == 0)
                     {
                         Console.WriteLine("Profiles not found\n Press any key to create a profile...");
                         Console.ReadKey();
+                        profile_array[profiles_count] = add();
                     }
                     else
                     {
