@@ -22,8 +22,8 @@ namespace laba1
             int[] arr;
             try
             {
-                LineCount = File.ReadLines(@"C:\\input\input.txt").Count(); // количество строк в файле
-                var reader = File.OpenText(@"C:\\input\input.txt");
+                LineCount = File.ReadLines(@"C:\\input\laba1.txt").Count(); // количество строк в файле
+                var reader = File.OpenText(@"C:\\input\laba1.txt");
                 bool Achtung;
                 arr = new int[LineCount];
                 for (int i = 0; i < LineCount; i++)
@@ -43,7 +43,7 @@ namespace laba1
         }
         static void Main()
         {
-            Console.WriteLine("ДИСКЛЕЙМЕР: Нужно создать файл 'C:\\\\input\\input.txt'.\n1 строка - 1 элемент массива. Если файла нет или с ним проблемы, то данные будете вводить вручную.\n");
+            Console.WriteLine("ДИСКЛЕЙМЕР: Нужно создать файл 'C:\\\\input\\laba1.txt'.\n1 строка - 1 элемент массива. Если файла нет или с ним проблемы, то данные будете вводить вручную.\n");
             Console.WriteLine("Какой массив?\n1) Одномерный\n2) Двухмерный\n3) Ступенчатый\n");
             int Choice = NumberFromUser(1, 3);
             switch (Choice)
