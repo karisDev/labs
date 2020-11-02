@@ -35,7 +35,7 @@ namespace laba1
             int[] FileInput = Laba1.FileInputReciever(); // заполнение массива элементами из файла
             if(FileInput.Length != ElementsAmount)
             {
-                Console.WriteLine("Неверное количество строк в txt. Должно быть: " + ElementsAmount);
+                Console.WriteLine("Неверное количество строк в txt. Должно быть: " + ElementsAmount + "\nЗапуск ручного ввода...");
                 for (int i = 0; i < ArraysAmount; i++)
                 {
                     Console.WriteLine("\nСтрока #" + i);
@@ -65,11 +65,11 @@ namespace laba1
             // 3.2.1 изменить конкретный элемент массива
 
             // в данной части кода мы заставляем написать правильные координаты элемента массива и его новое значение
-            Console.Write("\nВыберите номер массива (начиная с 0), в котором вы хотите внести изменение: ");
+            Console.WriteLine("\nВыберите номер массива (начиная с 0), в котором вы хотите внести изменение");
             int UserI = Laba1.NumberFromUser(0, ArraysAmount - 1);
-            Console.Write("\nВыберите элемент массива (начиная с 0), в котором вы хотите внести изменение: ");
+            Console.WriteLine("\nВыберите элемент массива (начиная с 0), в котором вы хотите внести изменение");
             int UserJ = Laba1.NumberFromUser(0, arr[UserI].Length);
-            Console.Write("\nУкажите новое значение: ");
+            Console.WriteLine("\nУкажите новое значение: ");
             int UserInt = Laba1.NumberFromUser(Int32.MinValue, Int32.MaxValue);
             arr[UserI][UserJ] = UserInt;
 
@@ -92,7 +92,7 @@ namespace laba1
                     }
                 }
             }
-            Console.WriteLine("\n\nМаксимальный элемент массива: " + MaxInt + "\nМинимальный элемент массива: " + MinInt);
+            Console.WriteLine("\nМаксимальный элемент массива: " + MaxInt + "\nМинимальный элемент массива: " + MinInt);
         }
     }
 }

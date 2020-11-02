@@ -6,7 +6,7 @@ namespace laba1
 {
     class Laba1
     {
-        public static int NumberFromUser(int MinOption, int MaxOption) // функция, заставляет пользователя вернуть число в диапазоне от 1 до OptionsAmount
+        public static int NumberFromUser(int MinOption, int MaxOption) // заставляет пользователя вернуть число в диапазоне от 1 до OptionsAmount
         {
             int UserNumber;
             Console.Write("Ввод: ");
@@ -16,7 +16,7 @@ namespace laba1
             }
             return UserNumber;
         }
-        public static int[] FileInputReciever() // возврат массива длинной 0 если с файлом проблемы
+        public static int[] FileInputReciever() // возврат массива длиной 0 если с файлом проблемы
         {
             int LineCount;
             int[] arr;
@@ -43,21 +43,38 @@ namespace laba1
         }
         static void Main()
         {
-            Console.WriteLine("ДИСКЛЕЙМЕР: Нужно создать файл 'C:\\\\input\\laba1.txt'.\n1 строка - 1 элемент массива. Если файла нет или с ним проблемы, то данные будете вводить вручную.\n");
-            Console.WriteLine("Какой массив?\n1) Одномерный\n2) Двухмерный\n3) Ступенчатый\n");
-            int Choice = NumberFromUser(1, 3);
-            switch (Choice)
+            bool terminate = false;
+            while(!terminate)
             {
-                case 1: // одномерный
-                    OneDimensionalArray.Solve();
-                    break;
-                case 2: // двухмерный (несколько массивов одинаковой длины)
-                    TwoDimensionalArray.Solve();
-                    break;
-                case 3: // ступенчатый (несколько массивов разной длины)
-                    AnyDimensionalArray.Solve();
-                    break;
+                Console.Clear();
+                Console.WriteLine("ДИСКЛЕЙМЕР: Нужно создать файл 'C:\\\\input\\laba1.txt'.\n1 строка - 1 элемент массива. Если файла нет или с ним проблемы, то данные будете вводить вручную.\n");
+                Console.WriteLine("Какой массив?\n1) Одномерный\n2) Двухмерный\n3) Ступенчатый\n");
+                int Choice = NumberFromUser(1, 3);
+                switch (Choice)
+                {
+                    case 1: // одномерный
+                        OneDimensionalArray.Solve();
+                        break;
+                    case 2: // двухмерный (несколько массивов одинаковой длины)
+                        TwoDimensionalArray.Solve();
+                        break;
+                    case 3: // ступенчатый (несколько массивов разной длины)
+                        AnyDimensionalArray.Solve();
+                        break;
+                }
+                Console.WriteLine("\nЗвершить программу?\n1)Да\n2)Нет");
+                switch(NumberFromUser(1, 2))
+                {
+                    case 1:
+                        terminate = true;
+                        break;
+                    case 2:
+                        terminate = false;
+                        break;
+                }
+
             }
+            
         }
     }
 }

@@ -20,8 +20,8 @@ namespace laba1
             
             if (LineCount == 0) // вручную
             {
-                Console.WriteLine("Файла не существует или в нем присутствуют не цифры.");
-                Console.Write("Введите количество элементов массива.\n");
+                Console.WriteLine("\nФайла не существует или в нем присутствуют не цифры.");
+                Console.WriteLine("\nВведите количество элементов массива.\n");
                 LineCount = Laba1.NumberFromUser(1, Int32.MaxValue); // Int32.MaxValue - это максимально допустимое число, с которым нет переполнения
                 arr = new int[LineCount];
                 for (int i = 0; i < LineCount; i++)
@@ -33,9 +33,9 @@ namespace laba1
             // С заполнением массива разобрались
 
             //НАЧАЛО ВЫПОЛНЕНИЯ ПО ПУНКТАМ
-            Console.WriteLine("\n\nВариант А (Ручками)");
+            Console.WriteLine("\nВариант А (Ручками)");
             // 1.а.1 вывод массива
-            Console.WriteLine("Массив целиком: ");
+            Console.WriteLine("\nМассив целиком: ");
             DisplayArray1(arr);
 
             // 1.а.2 Min Max
@@ -55,7 +55,7 @@ namespace laba1
                     LowestNumberId = i;
                 }
             }
-            Console.WriteLine("\nМаксимальный элемент #" + BiggestNumberId + "\nЗначение: " + BiggestNumber);
+            Console.WriteLine("\n\nМаксимальный элемент #" + BiggestNumberId + "\nЗначение: " + BiggestNumber);
             Console.WriteLine("Минимальный элемент #" + LowestNumberId + "\nЗначение: " + LowestNumber); // не люблю длинные строки
 
             // 1.а.3.1 прямая сортировка (возрастание)
@@ -115,7 +115,7 @@ namespace laba1
             }
             DisplayArray1(TempArr);
 
-            Console.WriteLine("\nВариант Б (методами и свойствами)");
+            Console.WriteLine("\n\nВариант Б (методами и свойствами)");
             // 1.б.1 вывод
             Console.WriteLine("\nВывод массива: ");
 

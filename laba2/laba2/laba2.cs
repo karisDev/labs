@@ -68,9 +68,8 @@ namespace laba2
 
         public static int user_number(int lowest, int highest) // заставляет пользователя написать число в диапозоне lowest...highest
         {
-            int user_answer;
             bool terminate;
-            terminate = Int32.TryParse(Console.ReadLine(), out user_answer);
+            terminate = Int32.TryParse(Console.ReadLine(), out int user_answer);
             while (!terminate || user_answer < lowest || user_answer > highest)
             {
                 Console.Write("You should pick a number between " + lowest + "..." + highest + ": ");
@@ -350,7 +349,7 @@ namespace laba2
                             }
                             break;
                         case 2:
-                            edit(profile_array[user_line - 1]);
+                            profile_array[user_line -1] = edit(profile_array[user_line - 1]);
                             break;
                         case 3:
                             break;
@@ -406,7 +405,6 @@ namespace laba2
                 case 3:
                     break;
             }
-
         }
         private static void display(string[][] temp_array, int temp_length)
         {
