@@ -1,0 +1,255 @@
+﻿<Window x:Class="laba3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:laba3"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="laba3" Height="451" Width="800" ResizeMode="CanMinimize"
+        FontSize="25"
+        FontFamily="Yu Gothic UI">
+    <Grid x:Name="g">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="175" />
+            <ColumnDefinition Width="25" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="50" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="80*" />
+            <RowDefinition Height="31*" />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
+        <Rectangle Grid.RowSpan="5"
+                   Fill="#FF7400FF"
+                   Stroke="#FF7400FF"/>
+        <Rectangle Grid.Column="1"
+                   Fill="#FF7400FF"
+                   Stroke="#FF7400FF"
+                   Grid.ColumnSpan="3"/>
+        <TextBlock Grid.Column="0" Grid.Row="0"
+                   VerticalAlignment="Center"
+                   FontSize="40"
+                   HorizontalAlignment="Center"
+                   Foreground="White"
+                   Text="Data type" Height="52" Margin="2,14" Width="171" />
+        <StackPanel Grid.Row="1" Grid.RowSpan="4">
+            <Rectangle Height="40" />
+            <Button
+                VerticalAlignment="Center"
+                Width="100"
+                Height="40"
+                Content="Stack"
+                Click="Stack" />
+            <Rectangle Height="20" />
+            <Button
+                VerticalAlignment="Center"
+                Width="100"
+                Height="40"
+                Content="Deque"
+                Click="Deque" />
+            <Rectangle Height="20" />
+            <Button
+                VerticalAlignment="Center"
+                Width="100"
+                Height="40"
+                Content="Queue"
+                Click="Queue"/>
+            <Rectangle Height="20" />
+            <Button x:Name="SaveButton"
+                Visibility="Hidden"
+                VerticalAlignment="Center"
+                Width="100"
+                Height="40"
+                Content="Save"
+                Click="Save"/>
+        </StackPanel>
+        
+        <TextBlock x:Name="DataTypeBegger" Grid.Column="2"
+                   Visibility="Hidden"
+                   Text="Please, choose data type"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="40"
+                   Foreground="White"/>
+
+        <WrapPanel x:Name="StackContainer" Grid.Column="2" Grid.RowSpan="5" 
+                    Visibility="Hidden"
+                    Orientation="Horizontal" 
+                    Margin="0,14,0,0">
+            <Rectangle Height="74" Width="95"/>
+            <TextBlock
+                   FontSize="40"
+                   Foreground="White"
+                   Text="Stack data functions" Width="417" Height="106"/>
+            <Rectangle Height="20" Width="40" />
+            <Button
+                    Height="40" Width="100"
+                    Content="Search"
+                    Click="StackSearch"/>
+            <Rectangle Width="25" />
+            <Button x:Name="StackPushButton"
+                    Height="40"
+                    Width="100"
+                    Content="Push"
+                    Click="StackPush"/>
+            <Rectangle Height="20" Width="25" />
+            <TextBox x:Name="StackPushValue" Height="30" Width="225" Foreground="#FF4D4D4D" FontSize="20" />
+            <Rectangle Height="20" Width="542" />
+            <Rectangle Height="20" Width="40" />
+            <Button
+                    Height="40" Width="100"
+                    Content="Pop"
+                    Click="StackPop"/>
+            <Rectangle Height="20" Width="25" />
+            <Button
+                    Height="40" Width="100" 
+                    Content="Peek" 
+                    Click="StackPeek"/>
+            <Rectangle Height="20" Width="25" />
+            <Button
+                    Height="40" Width="100"
+                    Content="Count"
+                    Click="StackCount"/>
+            <Rectangle Height="20" Width="25" />
+            <Button
+                    Height="40" Width="100"
+                    Content="Edit"
+                    Click="StackEdit"/>
+            <Rectangle Height="20" Width="542" />
+            <Rectangle Height="20" Width="40" />
+            <TextBox x:Name="StackLogs" 
+                     Text="logs will appear here" 
+                     Foreground="#FF5B5B5B" 
+                     Width="475"
+                     Height="100"
+                     IsReadOnly="True"
+                     TextWrapping="Wrap"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     HorizontalContentAlignment="Center" />
+        </WrapPanel>
+
+        <WrapPanel x:Name="DequeContainer" Grid.Column="2" Grid.RowSpan="5" 
+                    Visibility="Hidden"
+                    Orientation="Horizontal"
+                    Margin="0,14,0,0">
+            <Rectangle Height="74" Width="95"/>
+            <TextBlock FontSize="40"
+                   Foreground="White"
+                   Text="Deque data functions" Width="427" Height="106"/>
+
+            <Rectangle Height="20" Width="25" />
+            <Button Height="40" Width="125"
+                    Content="Enqueue first"
+                    Click="DequeEnqueueFirst"
+                    FontSize="20"/>
+            <Rectangle Height="20" Width="25" />
+            <Button Height="40" Width="125"
+                    Content="Enqueue last"
+                    Click="DequeEnqueueLast"
+                    FontSize="20"/>
+            <Rectangle Width="25" />
+            <TextBox x:Name="DequeEnqueueValue" Height="30" Width="200"
+                     Foreground="#FF4D4D4D"
+                     FontSize="20" />
+            <Rectangle Height="20" Width="542" />
+            <Rectangle Height="20" Width="50" />
+            <Button Height="40" Width="125"
+                    Content="Peek first"
+                    Click="DequePeekFirst"/>
+            <Rectangle Height="20" Width="25" />
+            <Button
+                    Height="40" Width="125" 
+                    Content="Peek last" 
+                    Click="DequePeekLast"/>
+            <Rectangle Height="20" Width="25" />
+            <Button
+                    Height="40" Width="125"
+                    Content="Count"
+                    Click="DequeCount"/>
+            <Rectangle Height="20" Width="50" />
+            <Rectangle Height="20" Width="542" />
+            <Rectangle Height="20" Width="125" />
+            <Button
+                    Height="40" Width="125"
+                    FontSize="20"
+                    Content="Dequeue first"
+                    Click="DequeDequeueFirst"/>
+            <Rectangle Height="20" Width="25" />
+            <Button
+                    Height="40" Width="125"
+                    FontSize="20"
+                    Content="Dequeue last"
+                    Click="DequeDequeueLast"/>
+            <Rectangle Height="20" Width="542" />
+            <Rectangle Height="20" Width="75" />
+            <TextBox x:Name="DequeLogs" 
+                     Text="logs will appear here" 
+                     Foreground="#FF5B5B5B" 
+                     Width="375"
+                     Height="100"
+                     IsReadOnly="True"
+                     TextWrapping="Wrap"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     HorizontalContentAlignment="Center" />
+        </WrapPanel>
+
+        <WrapPanel x:Name="QueueContainer" Grid.Column="2" Grid.RowSpan="5" 
+                    Visibility="Hidden"
+                    Orientation="Horizontal" 
+                    Margin="0,14,0,0">
+            <Rectangle Height="74" Width="95"/>
+            <TextBlock
+                   FontSize="40"
+                   Foreground="White"
+                   Text="Queue data functions" Width="418" Height="106"/>
+            <Rectangle Height="20" Width="40" />
+            <Button
+                    Height="40" Width="100"
+                    Content="Search"
+                    Click="QueueSearch"/>
+            <Rectangle Height="20" Width="25" />
+            <Button x:Name="QueueEnqueueButton"
+                    Height="40" Width="100"
+                    Content="Enqueue"
+                    Click="QueueEnqueue"/>
+            <Rectangle Width="25" />
+            <TextBox x:Name="QueueEnqueueValue"
+                     Height="30" Width="225"
+                     Foreground="#FF4D4D4D"
+                     FontSize="20" />
+            <Rectangle Height="20" Width="542" />
+            <Rectangle Height="20" Width="40" />
+            <Button Click="QueueDequeue"
+                    FontSize="24"
+                    Height="40" Width="100"
+                    Content="Dequeue"/>
+            <Rectangle Height="20" Width="25" />
+            <Button Height="40" Width="100" 
+                    Content="Peek" 
+                    Click="QueuePeek"/>
+            <Rectangle Height="20" Width="25" />
+            <Button Height="40" Width="100"
+                    Content="Count"
+                    Click="QueueCount"/>
+            <Rectangle Height="20" Width="25" />
+            <Button Height="40" Width="100"
+                    Content="Edit"
+                    Click="QueueEdit"/>
+            <Rectangle Height="20" Width="542" />
+            <Rectangle Height="20" Width="40" />
+            <TextBox x:Name="QueueLogs" 
+                     Text="logs will appear here" 
+                     Foreground="#FF5B5B5B" 
+                     Width="475"
+                     Height="100"
+                     IsReadOnly="True"
+                     TextWrapping="Wrap"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     HorizontalContentAlignment="Center" />
+        </WrapPanel>
+    </Grid>
+</Window>
