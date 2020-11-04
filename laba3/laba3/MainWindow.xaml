@@ -69,7 +69,7 @@
         </StackPanel>
         
         <TextBlock x:Name="DataTypeBegger" Grid.Column="2"
-                   Visibility="Hidden"
+                   Visibility="Visible"
                    Text="Please, choose data type"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"

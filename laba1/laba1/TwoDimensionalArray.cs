@@ -88,27 +88,45 @@ namespace laba1
             }
             Console.WriteLine("\nМаксимальный элемент [" + BiggestNumberId + "]\nЗначение: " + BiggestNumber);
             Console.WriteLine("\nМинимальный элемент [" + LowestNumberId + "]\nЗначение: " + LowestNumber);
-
+            
             // 2.3 произведение, сумма, разность массивов
-            Console.WriteLine("\nДля арифметических действий возьмем первые 2 массива:");
-            Int64 multiply = 1;
-            int sum = 0, substract = 0; // произведение, сумма, вычитание
             if (LineCount < 2)
             {
                 Console.WriteLine("У вас один массив, это невозможно...");
             }
             else
             {
-                for (int i = 0; i < 2; i++)
+                Int64[] multiply = new Int64[LineCount];
+                int[] sum = new int[LineCount];
+                int[] substract = new int[LineCount];
+                Console.WriteLine("\nДля арифметических действий возьмем первые 2 массива");
+                Console.Write("Произведение: [ ");
+                for (int i = 0; i < LineCount; i++)
                 {
-                    for (int j = 0; j < LineCount; j++)
+                    multiply[i] = 1 * arr[0, i] * arr[1, i];
+                    sum[i] += arr[0, i] + arr[1, i];
+                    substract[i] = arr[0, i] - arr[1, i];
+
+                    if (i == 0) // для сокращения размера кода сделаем вывод
                     {
-                        multiply *= arr[i, j];
-                        sum += arr[i, j];
-                        substract -= arr[i, j];
+                        Console.Write(multiply[i]);
+                    }
+                    else
+                    {
+                        Console.Write(", " + multiply[i]);
                     }
                 }
-                Console.WriteLine("Произведение = " + multiply + "\nСумма = " + sum + "\nРазность = " + substract);
+                Console.Write(" ]\nСумма: [ " + sum[0]);
+                for(int i = 1; i < LineCount; i++)
+                {
+                    Console.Write(", " + sum[i]);
+                }
+                Console.Write(" ]\nРазность: [ " + substract[0]);
+                for(int i = 1; i < LineCount; i++)
+                {
+                    Console.Write(", " + substract[i]);
+                }
+                Console.Write(" ]\n");
             }
         }
     }
