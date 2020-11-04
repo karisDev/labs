@@ -135,55 +135,72 @@
         <WrapPanel x:Name="DequeContainer" Grid.Column="2" Grid.RowSpan="5" 
                     Visibility="Hidden"
                     Orientation="Horizontal"
-                    Margin="0,14,0,0">
+                    Margin="0,14,35,0" Grid.ColumnSpan="2">
             <Rectangle Height="74" Width="95"/>
             <TextBlock FontSize="40"
                    Foreground="White"
-                   Text="Deque data functions" Width="427" Height="106"/>
+                   Text="Deque data functions" Width="440" Height="106"/>
 
-            <Rectangle Height="20" Width="25" />
-            <Button Height="40" Width="125"
+            <Rectangle Width="25" />
+            <Button x:Name="DequeEnqueueFirstButton"
+                    Height="40" Width="110"
                     Content="Enqueue first"
                     Click="DequeEnqueueFirst"
-                    FontSize="20"/>
-            <Rectangle Height="20" Width="25" />
-            <Button Height="40" Width="125"
+                    FontSize="17"/>
+            <Rectangle Width="25" />
+            <Button x:Name="DequeEnqueueLastButton"
+                    Height="40" Width="110"
                     Content="Enqueue last"
                     Click="DequeEnqueueLast"
-                    FontSize="20"/>
+                    FontSize="17"/>
             <Rectangle Width="25" />
-            <TextBox x:Name="DequeEnqueueValue" Height="30" Width="200"
+            <TextBox x:Name="DequeEnqueueValue" Height="30" Width="245"
                      Foreground="#FF4D4D4D"
                      FontSize="20" />
             <Rectangle Height="20" Width="542" />
-            <Rectangle Height="20" Width="50" />
-            <Button Height="40" Width="125"
+            <Rectangle Width="25" />
+            <Button Height="40" Width="110"
                     Content="Peek first"
                     Click="DequePeekFirst"/>
-            <Rectangle Height="20" Width="25" />
+            <Rectangle Width="25" />
             <Button
-                    Height="40" Width="125" 
+                    Height="40" Width="110" 
                     Content="Peek last" 
                     Click="DequePeekLast"/>
-            <Rectangle Height="20" Width="25" />
+            <Rectangle Width="25" />
             <Button
-                    Height="40" Width="125"
-                    Content="Count"
-                    Click="DequeCount"/>
-            <Rectangle Height="20" Width="50" />
+                    Height="40" Width="110"
+                    Content="Edit first"
+                    Click="DequeEditFirst"/>
+            <Rectangle Width="25" />
+            <Button
+                    Height="40" Width="110"
+                    Content="Edit last"
+                    Click="DequeEditLast"/>
             <Rectangle Height="20" Width="542" />
-            <Rectangle Height="20" Width="125" />
+            <Rectangle Width="25" />
             <Button
-                    Height="40" Width="125"
-                    FontSize="20"
+                    Height="40" Width="110"
+                    FontSize="17"
                     Content="Dequeue first"
                     Click="DequeDequeueFirst"/>
-            <Rectangle Height="20" Width="25" />
+            <Rectangle Width="25" />
             <Button
-                    Height="40" Width="125"
-                    FontSize="20"
+                    Height="40" Width="110"
+                    FontSize="17"
                     Content="Dequeue last"
                     Click="DequeDequeueLast"/>
+            <Rectangle Width="25" />
+            <Button
+                    Height="40" Width="110"
+                    FontSize="25"
+                    Content="Search"
+                    Click="DequeSearch"/>
+            <Rectangle Width="25" />
+            <Button
+                    Height="40" Width="110"
+                    Content="Count"
+                    Click="DequeCount"/>
             <Rectangle Height="20" Width="542" />
             <Rectangle Height="20" Width="75" />
             <TextBox x:Name="DequeLogs" 

@@ -226,6 +226,10 @@ namespace laba3
                 StackLogs.Text = "you can't edit an empty stack";
                 return;
             }
+            if (StackPushButton.Content == "Save")
+            {
+                return;
+            }
             StackPushValue.Text = StackData.Pop().ToString();
             StackLogs.Text = "click 'Save' button to save new value";
             StackPushButton.Content = "Save";
@@ -261,6 +265,13 @@ namespace laba3
                 DequeLogs.Text = "value cant be empty";
                 return;
             }
+            if (DequeEnqueueFirstButton.Content == "Save first")
+            {
+                DequeEnqueueFirstButton.FontSize = 17;
+                DequeEnqueueLastButton.FontSize = 17;
+                DequeEnqueueFirstButton.Content = "Enqueue first";
+                DequeEnqueueLastButton.Content = "Enqueue last";
+            }
             DequeData.AddFirst(DequeEnqueueValue.Text);
             DequeLogs.Text = '"' + DequeEnqueueValue.Text + '"' + " was written as a first element";
             DequeEnqueueValue.Text = "";
@@ -271,6 +282,13 @@ namespace laba3
             {
                 DequeLogs.Text = "value cant be empty";
                 return;
+            }
+            if (DequeEnqueueLastButton.Content == "Save last")
+            {
+                DequeEnqueueFirstButton.FontSize = 17;
+                DequeEnqueueLastButton.FontSize = 17;
+                DequeEnqueueFirstButton.Content = "Enqueue first";
+                DequeEnqueueLastButton.Content = "Enqueue last";
             }
             DequeData.AddLast(DequeEnqueueValue.Text);
             DequeLogs.Text = '"' + DequeEnqueueValue.Text + '"' + " was written as a last element";
@@ -294,20 +312,41 @@ namespace laba3
             }
             DequeLogs.Text = '"' + DequeData.Last().ToString() + '"' + " is in the ending of the deque";
         }
-        private void DequeCount(object sender, RoutedEventArgs e)
+        private void DequeEditFirst(object sender, RoutedEventArgs e)
         {
-            switch (DequeData.Count)
+            if (DequeData.Count == 0)
             {
-                case 0:
-                    DequeLogs.Text = "deque is empty";
-                    break;
-                case 1:
-                    DequeLogs.Text = "there is 1 object in deque";
-                    break;
-                default:
-                    DequeLogs.Text = "there are " + DequeData.Count + " objects in deque";
-                    break;
+                DequeLogs.Text = "you can't edit an empty deque";
+                return;
             }
+            if (DequeEnqueueFirstButton.Content == "Save first")
+            {
+                return;
+            }
+            DequeEnqueueFirstButton.FontSize = 20;
+            DequeEnqueueLastButton.FontSize = 20;
+            DequeEnqueueValue.Text = DequeData.RemoveFirst().ToString();
+            DequeLogs.Text = "click 'Save first' or 'Save last' button to save new value";
+            DequeEnqueueFirstButton.Content = "Save first";
+            DequeEnqueueLastButton.Content = "Save last";
+        }
+        private void DequeEditLast(object sender, RoutedEventArgs e)
+        {
+            if (DequeData.Count == 0)
+            {
+                DequeLogs.Text = "you can't edit an empty deque";
+                return;
+            }
+            if(DequeEnqueueFirstButton.Content == "Save first")
+            {
+                return;
+            }
+            DequeEnqueueFirstButton.FontSize = 20;
+            DequeEnqueueLastButton.FontSize = 20;
+            DequeEnqueueValue.Text = DequeData.RemoveLast().ToString();
+            DequeLogs.Text = "click 'Save first' or 'Save last' button to save new value";
+            DequeEnqueueFirstButton.Content = "Save first";
+            DequeEnqueueLastButton.Content = "Save last";
         }
         private void DequeDequeueFirst(object sender, RoutedEventArgs e)
         {
@@ -325,7 +364,40 @@ namespace laba3
                 DequeLogs.Text = "no any data left to remove from deque";
                 return;
             }
-            DequeLogs.Text = DequeData.RemoveLast().ToString() + " was removed from the beginning of deque";
+            DequeLogs.Text = DequeData.RemoveLast().ToString() + " was removed from the ending of deque";
+        }
+        private void DequeSearch(object sender, RoutedEventArgs e)
+        {
+            if (DequeEnqueueValue.Text == "")
+            {
+                DequeLogs.Text = "enter what to search for in the box above";
+                return;
+            }
+
+            if (DequeData.Contains(DequeEnqueueValue.Text))
+            {
+                DequeLogs.Text = "object '" + DequeEnqueueValue.Text + "' is inside the deque";
+            }
+            else
+            {
+                DequeLogs.Text = "there's no object with '" + DequeEnqueueValue.Text + "' value";
+            }
+            DequeEnqueueValue.Text = "";
+        }
+        private void DequeCount(object sender, RoutedEventArgs e)
+        {
+            switch (DequeData.Count)
+            {
+                case 0:
+                    DequeLogs.Text = "deque is empty";
+                    break;
+                case 1:
+                    DequeLogs.Text = "there is 1 object in deque";
+                    break;
+                default:
+                    DequeLogs.Text = "there are " + DequeData.Count + " objects in deque";
+                    break;
+            }
         }
         private void Queue(object sender, RoutedEventArgs e)
         {
@@ -422,6 +494,10 @@ namespace laba3
             if (QueueData.Count == 0)
             {
                 QueueLogs.Text = "you can't edit an empty queue";
+                return;
+            }
+            if (QueueEnqueueButton.Content == "Save")
+            {
                 return;
             }
             QueueEnqueueValue.Text = QueueData.Dequeue().ToString();
