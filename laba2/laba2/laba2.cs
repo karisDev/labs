@@ -83,12 +83,11 @@ namespace laba2
             DateTime date2 = new DateTime(Int32.Parse(date12[5]), Int32.Parse(date12[4]), Int32.Parse(date12[3]));
             return DateTime.Compare(date1, date2);
         }
-        private static string[] birth_check(string date_check) // проверка даты на правильность написания
+        private static string[] birth_check(string date_check) // проверка даты на правильность написания формата d/m/y
         {
             int current_year = Convert.ToInt32(DateTime.Now.Year);
             int date_day, date_month, date_year;
             string[] splitted_date = new string[3]; //Day, Month, Year
-
             try
             {
                 splitted_date = date_check.Split("/");

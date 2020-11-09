@@ -63,6 +63,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataTypes\DequeFunctions.cs" />
+    <Compile Include="DataTypes\QueueFunctions.cs" />
+    <Compile Include="DataTypes\StackFunctions.cs" />
     <Compile Include="Deque.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
